@@ -1,0 +1,128 @@
+{% extends "../base/base_general.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block link %}
+    <link href="//www.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css" />
+{% endblock link %}
+{% block css %}
+<style>
+   
+</style>
+{% endblock css %}
+{% block subheader_title %}Listado de productos{% endblock subheader_title %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+    <li class="breadcrumb-item">
+       <i class="flaticon2-reply mr-2"></i><a href="{% url 'inventario:menu_inventario' %}">Volver al menu</a> 
+    </li>
+</ul>
+{% endblock breadcrumb %} 
+
+{% block content %}
+
+
+<div class="card card-custom mb-5">
+    <div class="card-header">
+     <h3 class="card-title">
+      Manejo de inventario
+     </h3>
+    </div>
+    <!--begin::Form-->
+    <form>
+     <div class="card-body">
+      
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Producto: <span class="text-danger">*</span></label>
+                    <select id="producto"  class="form-control select2">
+                        {% for producto in productos %}
+                            <option value="{{ producto.id }}">{{ producto.descripcion }} - {{ producto.referencia }}</option>
+                        {% endfor %}
+                    </select>
+                   </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Cantidad: <span class="text-danger">*</span></label>
+                    <input id="cantidad" type="number" class="form-control"  placeholder="Ej: 10"/>
+                   </div>
+            </div>
+
+            <div class="col-md-2 d-flex justify-content-center align-items-center">
+                <button id="sumar-inventario-btn" type="button" class="btn btn-success mr-2">SUMAR AL INVENTARIO</button>
+            </div>
+
+            <div class="col-md-2 d-flex justify-content-center align-items-center">
+                <button id="restar-inventario-btn" type="button" class="btn btn-danger">RESTAR INVENTARIO</button>
+            </div>
+
+        </div>
+    
+      
+     </div>
+    </form>
+    <!--end::Form-->
+   </div>
+
+<div class="card card-custom">
+    <div class="card-header">
+        <div class="card-title">
+            <span class="card-icon">
+                <i class="icon-2x text-dark flaticon-layers"></i>
+            </span>
+            <h3 class="card-label">Inventario de productos
+            <small></small></h3>
+        </div>
+        <!-- <div class="card-toolbar">
+            <a  href="#" class="btn btn-success font-weight-bold mr-2" data-toggle="modal" data-target="#generarReporte">
+                <i class="flaticon2-download-2"></i>Generar Excel</a>
+        </div> -->
+    </div>
+    <div class="card-body">
+            <table id="tabla-inventario" class="table table-separate table-head-custom table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+            </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+{% block javascripts %}
+<script src="{% static 'src/js/apps/utils/utils.js' %}?v=12"></script>
+<script src="{% static 'assets/plugins/custom/datatables/datatables.bundle.js' %}"></script>
+
+<script>
+    const csrftoken = "{{ csrf_token }}"
+    const urlTablaInventario = "{% url 'inventario:data_inventario' %}"
+    const registrarInventarioUrl = "{% url 'inventario:manejo_inventario' %}"
+
+
+    $(".select2").select2({
+        selectionCssClass: ":all:",
+        width: "100%",
+    });
+    
+</script> 
+<script src="{% static 'src/js/apps/inventario/forms.js' %}?v=12"></script>
+<script src="{% static 'src/js/apps/inventario/tabla_inventario.js' %}?v=12"></script>
+<script src="{% static 'src/js/apps/inventario/manejo_inventario.js' %}?v=1"></script>
+{% endblock %}

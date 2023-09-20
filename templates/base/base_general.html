@@ -1,0 +1,514 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        {% comment %} Bloque de los titulos {% endcomment %}
+        <title>{% block subheader_title %} Inicio {% endblock subheader_title %} | .exe</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {% comment %} Elementos globales {% endcomment %}
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/global/plugins.bundle.css' %}?v=1.0" />
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/custom/prismjs/prismjs.bundle.css' %}?v=1.0" />
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.bundle.css' %}?v=1.0" />
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.bundle.min.css' %}?v=1.0" />
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/base-light.css' %}?v=1.0" />
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/brand-blue.css' %}?v=1.0" />
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/aside-blue.css' %}?v=1.0" />
+        {% comment %}
+        <link rel="stylesheet" type="text/css" href="{% static 'src/js/components/datatable/jquery.dataTables.min.css' %}?v=1.0" />
+        {% endcomment %}
+        <link rel="stylesheet" href="{% static 'assets/plugins/global/fonts/fonts.css' %}?v=1.0" />
+
+        {% block link %}{% endblock link %} {% comment %} Agregar una nueva dependencia global {% endcomment %} {% comment %}
+        <link rel="stylesheet" type="text/css" href="{% static '' %}?v=1.0" />
+        {% endcomment %} {% comment %} Bloque de los iconos {% endcomment %} {% block ico %}
+        <link rel="shortcut icon" href="{% static 'src/media/logos/logo.png' %}" />
+        {% endblock %} {% comment %} Agregar una nueva dependencia global {% endcomment %} {% comment %} {% block ico %}
+        <link rel="shortcut icon" href="{% static '' %}" />
+        {% endblock %} {% endcomment %}
+        <style type="text/css">
+            {% block css %}
+            {% endblock css %}
+        </style>
+    </head>
+    <!--begin::Body-->
+    <body id="kt_body" class="print-content-only header-fixed header-mobile-fixed header-bottom-enabled page-loading">
+        <!--begin::Main-->
+        <!--begin::Header Mobile-->
+        <div id="kt_header_mobile" class="header-mobile bg-primary header-mobile-fixed">
+            <!--begin::Logo-->
+            <a>
+                <img alt="Logo" src="{% static 'src/media/logos/logo.png' %}" class="max-h-30px" />
+            </a>
+            <!--end::Logo-->
+            {% if not info_user.is_anonymous %}
+            <!--begin::Toolbar-->
+            <div class="d-flex align-items-center">
+                <button class="btn p-0 burger-icon burger-icon-left ml-4" id="kt_header_mobile_toggle">
+                    <span></span>
+                </button>
+                <button class="btn p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+                    <span class="svg-icon svg-icon-xl">
+                        <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <polygon points="0 0 24 0 24 24 0 24" />
+                                <path d="M12,11 C9.790861,11 8,9.209139 8,7 C8,4.790861 9.790861,3 12,3 C14.209139,3 16,4.790861 16,7 C16,9.209139 14.209139,11 12,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                <path
+                                    d="M3.00065168,20.1992055 C3.38825852,15.4265159 7.26191235,13 11.9833413,13 C16.7712164,13 20.7048837,15.2931929 20.9979143,20.2 C21.0095879,20.3954741 20.9979143,21 20.2466999,21 C16.541124,21 11.0347247,21 3.72750223,21 C3.47671215,21 2.97953825,20.45918 3.00065168,20.1992055 Z"
+                                    fill="#000000"
+                                    fill-rule="nonzero"
+                                />
+                            </g>
+                        </svg>
+                        <!--end::Svg Icon-->
+                    </span>
+                </button>
+            </div>
+
+            {% endif %}
+            <!--end::Toolbar-->
+        </div>
+        <!--end::Header Mobile-->
+        <div class="d-flex flex-column flex-root">
+            <!--begin::Page-->
+            <div class="d-flex flex-row flex-column-fluid page">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+                    <!--begin::Header-->
+                    <div id="kt_header" class="header flex-column header-fixed">
+                        <!--begin::Top-->
+                        <div class="header-top">
+                            <!--begin::Container-->
+                            <div class="container">
+                                <!--begin::Left-->
+                                <div class="d-none d-lg-flex align-items-center mr-3">
+                                    <!--begin::Logo-->
+                                    <a class="mr-20">
+                                        <img alt="Logo" src="{% static 'src/media/logos/logo.png' %}" class="max-h-150px" />
+                                    </a>
+                                    <!--end::Logo-->
+                                    <!--begin::Tab Navs(for desktop mode)-->
+                                    <ul class="header-tabs nav align-self-end font-size-lg" role="tablist">
+                                        <!--begin::Item-->
+                                        <!-- <li class="nav-item">
+											<a href="{% url 'home' %}" class="nav-link py-4 px-6 active" data-toggle="tab" data-target="#kt_header_tab_1" role="tab">Inicio</a>
+										</li> -->
+                                        <!--end::Item-->
+                                        <!--begin::Item-->
+                                        {% comment %}
+                                        <li class="nav-item mr-3">
+                                            <a href="#" class="nav-link py-4 px-6" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Reports</a>
+                                        </li>
+                                        {% endcomment %}
+                                        <!--end::Item-->
+                                    </ul>
+                                    <!--begin::Tab Navs-->
+                                </div>
+                                <!--end::Left-->
+                                <!--begin::Topbar-->
+                                <div class="topbar bg-primary">
+                                    <!--begin::Notifications-->
+                                    <div class="dropdown">
+                                        <!--begin::Toggle-->
+                                        <div class="topbar-item" data-toggle="dropdown" data-offset="10px,0px">
+                                            <div class="btn btn-icon btn-hover-transparent-white btn-dropdown btn-lg mr-1 pulse pulse-white">
+                                                <span class="svg-icon svg-icon-xl">
+                                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24" height="24" />
+                                                            <path
+                                                                d="M2.56066017,10.6819805 L4.68198052,8.56066017 C5.26776695,7.97487373 6.21751442,7.97487373 6.80330086,8.56066017 L8.9246212,10.6819805 C9.51040764,11.267767 9.51040764,12.2175144 8.9246212,12.8033009 L6.80330086,14.9246212 C6.21751442,15.5104076 5.26776695,15.5104076 4.68198052,14.9246212 L2.56066017,12.8033009 C1.97487373,12.2175144 1.97487373,11.267767 2.56066017,10.6819805 Z M14.5606602,10.6819805 L16.6819805,8.56066017 C17.267767,7.97487373 18.2175144,7.97487373 18.8033009,8.56066017 L20.9246212,10.6819805 C21.5104076,11.267767 21.5104076,12.2175144 20.9246212,12.8033009 L18.8033009,14.9246212 C18.2175144,15.5104076 17.267767,15.5104076 16.6819805,14.9246212 L14.5606602,12.8033009 C13.9748737,12.2175144 13.9748737,11.267767 14.5606602,10.6819805 Z"
+                                                                fill="#000000"
+                                                                opacity="0.3"
+                                                            />
+                                                            <path
+                                                                d="M8.56066017,16.6819805 L10.6819805,14.5606602 C11.267767,13.9748737 12.2175144,13.9748737 12.8033009,14.5606602 L14.9246212,16.6819805 C15.5104076,17.267767 15.5104076,18.2175144 14.9246212,18.8033009 L12.8033009,20.9246212 C12.2175144,21.5104076 11.267767,21.5104076 10.6819805,20.9246212 L8.56066017,18.8033009 C7.97487373,18.2175144 7.97487373,17.267767 8.56066017,16.6819805 Z M8.56066017,4.68198052 L10.6819805,2.56066017 C11.267767,1.97487373 12.2175144,1.97487373 12.8033009,2.56066017 L14.9246212,4.68198052 C15.5104076,5.26776695 15.5104076,6.21751442 14.9246212,6.80330086 L12.8033009,8.9246212 C12.2175144,9.51040764 11.267767,9.51040764 10.6819805,8.9246212 L8.56066017,6.80330086 C7.97487373,6.21751442 7.97487373,5.26776695 8.56066017,4.68198052 Z"
+                                                                fill="#000000"
+                                                            />
+                                                        </g>
+                                                    </svg>
+                                                    <!--end::Svg Icon-->
+                                                </span>
+                                                <span class="pulse-ring"></span>
+                                            </div>
+                                        </div>
+                                        <!--end::Toggle-->
+                                    </div>
+                                    <!--end::Notifications-->
+                                    <!--begin::User-->
+                                    <div class="topbar-item">
+                                        <div class="btn btn-icon btn-hover-transparent-white w-sm-auto d-flex align-items-center btn-lg px-2" id="kt_quick_user_toggle">
+                                            <div class="d-flex flex-column text-right pr-sm-3">
+                                                <span class="text-white opacity-50 font-weight-bold font-size-sm d-none d-sm-inline">{{ info_user.username }}</span>
+                                                <span class="text-white font-weight-bolder font-size-sm d-none d-sm-inline">{{ info_user.first_name }}</span>
+                                            </div>
+                                            <span class="symbol symbol-35">
+                                                <i class="text-white flaticon2-user"></i>
+                                                {% comment %} <span class="symbol-label font-size-h5 font-weight-bold text-white bg-white-o-30">{{ info_user.id }}</span> {% endcomment %}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!--end::User-->
+                                </div>
+                                <!--end::Topbar-->
+                            </div>
+                            <!--end::Container-->
+                        </div>
+                        <!--end::Top-->
+                        <!--begin::Bottom-->
+                        <div class="header-bottom">
+                            <!--begin::Container-->
+                            <div class="container">
+                                <!--begin::Header Menu Wrapper-->
+                                <div class="header-navs header-navs-left" id="kt_header_navs">
+                                    <!--begin::Tab Navs(for tablet and mobile modes)-->
+                                    <ul class="header-tabs p-5 p-lg-0 d-flex d-lg-none nav nav-bold nav-tabs" role="tablist">
+                                        <!--begin::Item-->
+                                        {% if not info_user.is_anonymous %}
+
+                                            <li class="nav-item mr-2">
+                                                <a href="{% url 'home' %}" class="nav-link btn btn-clean active" data-toggle="tab" data-target="#kt_header_tab_1" role="tab">Inicio</a>
+                                            </li>
+                                        {% endif %}                      
+                                        <!--end::Item-->
+                                        <!--begin::Item-->
+                                        {% comment %}
+                                        <li class="nav-item mr-2">
+                                            <a href="#" class="nav-link btn btn-clean" data-toggle="tab" data-target="#kt_header_tab_2" role="tab">Reports</a>
+                                        </li>
+                                        {% endcomment %}
+                                        <!--end::Item-->
+                                    </ul>
+                                    <!--begin::Tab Navs-->
+                                    <!--begin::Tab Content-->
+                                    <div class="tab-content">
+                                        <!--begin::Tab Pane-->
+                                        <div class="tab-pane py-5 p-lg-0 show active" id="kt_header_tab_1">
+                                            <!--begin::Menu-->
+                                            <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
+                                                <!--begin::Nav-->
+                                                <ul class="menu-nav">
+
+                                                    {% if not info_user.is_anonymous %}
+
+                                                    <li class="menu-item menu-item-active" aria-haspopup="true">
+                                                        <a href="{% url 'home' %}" class="menu-link">
+                                                            <span class="menu-text">Inicio</span>
+                                                        </a>
+                                                    </li>
+                                                    {% endif %}
+
+                                                    
+                                                    <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+                                                        <a href="javascript:;" class="menu-link menu-toggle">
+                                                            <span class="menu-text">Acciones</span>
+                                                            <span class="menu-desc"></span>
+                                                            <i class="menu-arrow"></i>
+                                                        </a>
+                                                        <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                                                            <ul class="menu-subnav">
+                                                              
+                                                            </ul>
+                                                                <ul class="menu-subnav">     
+                                                                    
+                                                                    {% if perms.users.productos %}
+                                                                    <li class="menu-item" aria-haspopup="true">
+                                                                        <a href="{% url 'productos:menu_productos' %}" class="menu-link">
+                                                                            <i class="icon-xl fas fa-archive mr-4"></i>
+                                                                           
+                                                                            <span class="menu-text">Productos</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    {% endif %}
+
+                                                                    {% if perms.users.ventas %}
+                                                                    <li class="menu-item" aria-haspopup="true">
+                                                                        <a href="{% url 'pedidos:menu_pedidos' %}" class="menu-link">
+                                                                            <i class="icon-xl far fa-sticky-note mr-4"></i>
+                                                                            <span class="menu-text">Pedidos</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    {% endif %}
+
+                                                                    {% if perms.users.ventas %}
+                                                                    <li class="menu-item" aria-haspopup="true">
+                                                                        <a href="{% url 'inventario:menu_inventario' %}" class="menu-link">
+                                                                            <i class="icon-xl far fa-sticky-note mr-4"></i>
+                                                                            <span class="menu-text">Inventario</span>
+                                                                        </a>
+                                                                    </li>
+                                                                    {% endif %}
+                                                                   
+                                                                </ul>
+                                                        </div>
+                                                    </li>
+                                                    
+
+                                                 
+                                                </ul>
+                                                <!--end::Nav-->
+                                            </div>
+                                            <!--end::Menu-->
+                                        </div>
+                                        <!--begin::Tab Pane-->
+                                    </div>
+                                    <!--end::Tab Content-->
+                                </div>
+                                <!--end::Header Menu Wrapper-->
+                            </div>
+                            <!--end::Container-->
+                        </div>
+                        <!--end::Bottom-->
+                    </div>
+                    <!--end::Header-->
+
+                    <!--begin::Content-->
+                    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                        <!--begin::Entry-->
+                        <div class="d-flex flex-column-fluid">
+                            <!--begin::Container-->
+                            <div class="container{% block container %}{% endblock container %}">
+                                {% block breadcrumb %} {% endblock breadcrumb %} {% comment %} Bloque de contenido {% endcomment %} {% block content %} {% endblock content %}
+                            </div>
+                            <!--end::Container-->
+                        </div>
+                        <!--end::Entry-->
+                    </div>
+                    <!--end::Content-->
+
+                    <!--begin::Footer-->
+                    <div class="footer bg-white py-4 d-flex flex-lg-column" id="kt_footer">
+                        <!--begin::Container-->
+                        <div class="container d-flex align-items-center justify-content-center">
+                            <!--begin::Copyright-->
+                            <div class="text-dark order-2 order-md-1">
+                                <span class="text-muted font-weight-bold mr-2">2023©</span>
+                                <a target="_blank" class="text-dark-75 text-hover-primary">Punto exe</a>
+                            </div>
+                            <!--end::Copyright-->
+                            <!--begin::Nav-->
+                            <div class="nav nav-dark order-1 order-md-2">
+                                {% comment %} <a href="https://eswindows.com/wp-content/uploads/2022/08/HabeasData-ING.pdf" target="_blank" class="nav-link pr-3 pl-0">About</a>
+                                <a href="https://eswindows.com/contact/" target="_blank" class="nav-link pl-3 pr-0">Contact</a> {% endcomment %}
+                            </div>
+                            <!--end::Nav-->
+                        </div>
+                        <!--end::Container-->
+                    </div>
+                    <!--end::Footer-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            <!--end::Page-->
+        </div>
+        <!--end::Main-->
+        <!-- begin::User Panel-->
+        <div id="kt_quick_user" class="offcanvas offcanvas-right p-10">
+            <!--begin::Header-->
+            <div class="offcanvas-header d-flex align-items-center justify-content-between pb-5">
+                <h3 class="font-weight-bold m-0">
+                    <small class="text-muted font-size-sm ml-1">Último Inicio de Sesión: {{ info_user.last_login }}</small>
+                </h3>
+                <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
+                    <i class="ki ki-close icon-xs text-muted"></i>
+                </a>
+            </div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="offcanvas-content pr-5 mr-n5">
+                <!--begin::Header-->
+                <div class="d-flex align-items-center mt-5">
+                    <div class="symbol symbol-100 mr-5">
+                        <img alt="Logo" src="{% static 'src/media/users/default.jpg' %}" class="symbol-label" />
+                        <i class="symbol-badge bg-success"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{ info_user.first_name }}</a>
+                        {% comment %} <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{ info_user.last_name }}</a> {% endcomment %}
+                        <div class="navi mt-2">
+                            <a href="#" class="navi-item">
+                                <span class="navi-link p-0 pb-2">
+                                    <span class="navi-icon mr-1"> </span>
+                                </span>
+                            </a>
+
+                            {% if not info_user.is_anonymous %}
+
+                                <a href="{% url 'logout' %}" class="btn btn-sm btn-light-danger font-weight-bolder py-2 px-5">
+                                    <span class="svg-icon svg-icon-danger svg-icon-2x">
+                                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo7\dist/../src/media/svg/icons\Electric\Shutdown.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M7.62302337,5.30262097 C8.08508802,5.000107 8.70490146,5.12944838 9.00741543,5.59151303 C9.3099294,6.05357769 9.18058801,6.67339112 8.71852336,6.97590509 C7.03468892,8.07831239 6,9.95030239 6,12 C6,15.3137085 8.6862915,18 12,18 C15.3137085,18 18,15.3137085 18,12 C18,9.99549229 17.0108275,8.15969002 15.3875704,7.04698597 C14.9320347,6.73472706 14.8158858,6.11230651 15.1281448,5.65677076 C15.4404037,5.20123501 16.0628242,5.08508618 16.51836,5.39734508 C18.6800181,6.87911023 20,9.32886071 20,12 C20,16.418278 16.418278,20 12,20 C7.581722,20 4,16.418278 4,12 C4,9.26852332 5.38056879,6.77075716 7.62302337,5.30262097 Z"
+                                                    fill="#000000"
+                                                    fill-rule="nonzero"
+                                                />
+                                                <rect fill="#000000" opacity="0.3" x="11" y="3" width="2" height="10" rx="1" />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    Cerrar Sesión
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!--end::Header-->
+                <!--begin::Separator-->
+                <div class="separator separator-dashed mt-8 mb-5"></div>
+                <!--end::Separator-->
+                <!--begin::Nav-->
+                <div class="navi navi-spacer-x-0 p-0">
+                    <!--begin::Item-->
+                    <a class="navi-item">
+                        <div class="navi-link">
+                            <div class="navi-text">
+                                <div class="font-weight-bold">Mi Perfil</div>
+                                <br />
+                                {% if info_user.cedula %}
+                                <div class="text-muted">
+                                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo7\dist/../src/media/svg/icons\Layout\Layout-grid.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <rect fill="#000000" opacity="0.3" x="4" y="4" width="4" height="4" rx="1" />
+                                                <path
+                                                    d="M5,10 L7,10 C7.55228475,10 8,10.4477153 8,11 L8,13 C8,13.5522847 7.55228475,14 7,14 L5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z M11,4 L13,4 C13.5522847,4 14,4.44771525 14,5 L14,7 C14,7.55228475 13.5522847,8 13,8 L11,8 C10.4477153,8 10,7.55228475 10,7 L10,5 C10,4.44771525 10.4477153,4 11,4 Z M11,10 L13,10 C13.5522847,10 14,10.4477153 14,11 L14,13 C14,13.5522847 13.5522847,14 13,14 L11,14 C10.4477153,14 10,13.5522847 10,13 L10,11 C10,10.4477153 10.4477153,10 11,10 Z M17,4 L19,4 C19.5522847,4 20,4.44771525 20,5 L20,7 C20,7.55228475 19.5522847,8 19,8 L17,8 C16.4477153,8 16,7.55228475 16,7 L16,5 C16,4.44771525 16.4477153,4 17,4 Z M17,10 L19,10 C19.5522847,10 20,10.4477153 20,11 L20,13 C20,13.5522847 19.5522847,14 19,14 L17,14 C16.4477153,14 16,13.5522847 16,13 L16,11 C16,10.4477153 16.4477153,10 17,10 Z M5,16 L7,16 C7.55228475,16 8,16.4477153 8,17 L8,19 C8,19.5522847 7.55228475,20 7,20 L5,20 C4.44771525,20 4,19.5522847 4,19 L4,17 C4,16.4477153 4.44771525,16 5,16 Z M11,16 L13,16 C13.5522847,16 14,16.4477153 14,17 L14,19 C14,19.5522847 13.5522847,20 13,20 L11,20 C10.4477153,20 10,19.5522847 10,19 L10,17 C10,16.4477153 10.4477153,16 11,16 Z M17,16 L19,16 C19.5522847,16 20,16.4477153 20,17 L20,19 C20,19.5522847 19.5522847,20 19,20 L17,20 C16.4477153,20 16,19.5522847 16,19 L16,17 C16,16.4477153 16.4477153,16 17,16 Z"
+                                                    fill="#000000"
+                                                />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    {{ info_user.cedula }}
+                                </div>
+                                {% endif %} {% if info_user.email %}
+                                <div class="text-muted">
+                                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo7\dist/../src/media/svg/icons\Communication\Mail-at.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M11.575,21.2 C6.175,21.2 2.85,17.4 2.85,12.575 C2.85,6.875 7.375,3.05 12.525,3.05 C17.45,3.05 21.125,6.075 21.125,10.85 C21.125,15.2 18.825,16.925 16.525,16.925 C15.4,16.925 14.475,16.4 14.075,15.65 C13.3,16.4 12.125,16.875 11,16.875 C8.25,16.875 6.85,14.925 6.85,12.575 C6.85,9.55 9.05,7.1 12.275,7.1 C13.2,7.1 13.95,7.35 14.525,7.775 L14.625,7.35 L17,7.35 L15.825,12.85 C15.6,13.95 15.85,14.825 16.925,14.825 C18.25,14.825 19.025,13.725 19.025,10.8 C19.025,6.9 15.95,5.075 12.5,5.075 C8.625,5.075 5.05,7.75 5.05,12.575 C5.05,16.525 7.575,19.1 11.575,19.1 C13.075,19.1 14.625,18.775 15.975,18.075 L16.8,20.1 C15.25,20.8 13.2,21.2 11.575,21.2 Z M11.4,14.525 C12.05,14.525 12.7,14.35 13.225,13.825 L14.025,10.125 C13.575,9.65 12.925,9.425 12.3,9.425 C10.65,9.425 9.45,10.7 9.45,12.375 C9.45,13.675 10.075,14.525 11.4,14.525 Z"
+                                                    fill="#000000"
+                                                />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    {{ info_user.email }}
+                                </div>
+                                {% endif %} {% if info_user.telefono %}
+                                <div class="text-muted">
+                                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo7\dist/../src/media/svg/icons\Communication\Call#1.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <path
+                                                    d="M11.914857,14.1427403 L14.1188827,11.9387145 C14.7276032,11.329994 14.8785122,10.4000511 14.4935235,9.63007378 L14.3686433,9.38031323 C13.9836546,8.61033591 14.1345636,7.680393 14.7432841,7.07167248 L17.4760882,4.33886839 C17.6713503,4.14360624 17.9879328,4.14360624 18.183195,4.33886839 C18.2211956,4.37686904 18.2528214,4.42074752 18.2768552,4.46881498 L19.3808309,6.67676638 C20.2253855,8.3658756 19.8943345,10.4059034 18.5589765,11.7412615 L12.560151,17.740087 C11.1066115,19.1936265 8.95659008,19.7011777 7.00646221,19.0511351 L4.5919826,18.2463085 C4.33001094,18.1589846 4.18843095,17.8758246 4.27575484,17.613853 C4.30030124,17.5402138 4.34165566,17.4733009 4.39654309,17.4184135 L7.04781491,14.7671417 C7.65653544,14.1584211 8.58647835,14.0075122 9.35645567,14.3925008 L9.60621621,14.5173811 C10.3761935,14.9023698 11.3061364,14.7514608 11.914857,14.1427403 Z"
+                                                    fill="#000000"
+                                                />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    {{ info_user.telefono }}
+                                </div>
+                                {% endif %} {% if info_user.cargo %}
+                                <div class="text-muted">
+                                    <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                        <!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\legacy\metronic\theme\html\demo7\dist/../src/media/svg/icons\Media\Airplay.svg-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <polygon fill="#000000" opacity="0.3" points="8 21 16 21 12 16" />
+                                                <path
+                                                    d="M17.4029496,14.5491021 L15.8599014,15.8215022 C14.9149052,14.675499 13.5137472,14 12,14 C10.4912085,14 9.09418404,14.6710418 8.14910121,15.8106159 L6.60963188,14.533888 C7.93073905,12.9409064 9.88958759,12 12,12 C14.1173586,12 16.0819686,12.9471394 17.4029496,14.5491021 Z M20.4681628,11.9788888 L18.929169,13.2561898 C17.2286725,11.2072964 14.7140097,10 12,10 C9.28974232,10 6.77820732,11.2039334 5.07766256,13.2479685 L3.54017812,11.968851 C5.61676443,9.47281829 8.68922234,8 12,8 C15.3153667,8 18.3916375,9.47692603 20.4681628,11.9788888 Z M23.2904427,9.72048884 L21.678507,10.9044074 C19.4302828,7.84339199 15.8698431,6 12,6 C8.0766912,6 4.47282622,7.89509192 2.2325887,11.0270624 L0.605887503,9.86351476 C3.21772389,6.21202937 7.42430358,4 12,4 C16.5132783,4 20.6693179,6.15175957 23.2904427,9.72048884 Z"
+                                                    fill="#000000"
+                                                    fill-rule="nonzero"
+                                                />
+                                            </g>
+                                        </svg>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    {{ info_user.cargo }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                    <!--end:Item-->
+                </div>
+                <!--end::Nav-->
+                <!--begin::Separator-->
+                <div class="separator separator-dashed my-7"></div>
+                <!--end::Separator-->
+            </div>
+            <!--end::Content-->
+        </div>
+        <!-- end::User Panel-->
+        <!--begin::Scrolltop-->
+        <div id="kt_scrolltop" class="scrolltop">
+            <span class="svg-icon">
+                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Up-2.svg-->
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <polygon points="0 0 24 0 24 24 0 24" />
+                        <rect fill="#000000" opacity="0.3" x="11" y="10" width="2" height="10" rx="1" />
+                        <path
+                            d="M6.70710678,12.7071068 C6.31658249,13.0976311 5.68341751,13.0976311 5.29289322,12.7071068 C4.90236893,12.3165825 4.90236893,11.6834175 5.29289322,11.2928932 L11.2928932,5.29289322 C11.6714722,4.91431428 12.2810586,4.90106866 12.6757246,5.26284586 L18.6757246,10.7628459 C19.0828436,11.1360383 19.1103465,11.7686056 18.7371541,12.1757246 C18.3639617,12.5828436 17.7313944,12.6103465 17.3242754,12.2371541 L12.0300757,7.38413782 L6.70710678,12.7071068 Z"
+                            fill="#000000"
+                            fill-rule="nonzero"
+                        />
+                    </g>
+                </svg>
+                <!--end::Svg Icon-->
+            </span>
+        </div>
+        <!--end::Scrolltop-->
+        <!--begin::Global Config(global config for global JS scripts)-->
+        <script>
+            var KTAppSettings = {
+                breakpoints: { sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1200 },
+                colors: {
+                    theme: {
+                        base: { white: "#ffffff", primary: "#6993FF", secondary: "#E5EAEE", success: "#1BC5BD", info: "#8950FC", warning: "#FFA800", danger: "#F64E60", light: "#F3F6F9", dark: "#212121" },
+                        light: { white: "#ffffff", primary: "#E1E9FF", secondary: "#ECF0F3", success: "#C9F7F5", info: "#EEE5FF", warning: "#FFF4DE", danger: "#FFE2E5", light: "#F3F6F9", dark: "#D6D6E0" },
+                        inverse: { white: "#ffffff", primary: "#ffffff", secondary: "#212121", success: "#ffffff", info: "#ffffff", warning: "#ffffff", danger: "#ffffff", light: "#464E5F", dark: "#ffffff" },
+                    },
+                    gray: { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" },
+                },
+                "font-family": "Poppins",
+            };
+        </script>
+        <!--end::Global Config-->
+
+        {% comment %} Agregar dependencia global {% endcomment %}
+        <script src="{% static 'assets/plugins/global/jquery-3.6.3.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/global/plugins.bundle.js' %}"></script>
+        <script src="{% static 'assets/plugins/custom/prismjs/prismjs.bundle.js' %}"></script>
+        <script src="{% static 'assets/js/scripts.bundle.js' %}"></script>
+        <script src="{% static 'assets/js/pages/features/miscellaneous/blockui.js' %}"></script>
+        <script src="{% static 'assets/js/pages/features/miscellaneous/toastr.js' %}"></script>
+        <script src="{% static 'src/js/pages/widgets.js' %}"></script>
+        {% comment %}
+        <script src="{% static 'src/js/components/datatable/jquery.dataTables.min.js' %}"></script>
+        {% endcomment %}
+
+        <script></script>
+        {% comment %}
+        <script src="{% static '' %}"></script>
+        {% endcomment %} {% comment %} Bloque de javascripts {% endcomment %} {% block javascripts %} {% endblock %}
+    </body>
+    <!--end::Body-->
+</html>

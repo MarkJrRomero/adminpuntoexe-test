@@ -1,5 +1,11 @@
 FROM python:3.10.4-alpine3.15
+# RUN apt-get update
+# RUN apt-get install -y locales locales-all
+# ENV LC_ALL en_US.UTF-8
+# ENV LANG en_US.UTF-8
+# ENV LANGUAGE en_US.UTF-8
 
+# ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app

@@ -1,0 +1,82 @@
+{% extends "../base/base_general.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block link %}
+    <link href="//www.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css" />
+{% endblock link %}
+{% block css %}
+<style>
+   
+</style>
+{% endblock css %}
+{% block subheader_title %}Listado de productos{% endblock subheader_title %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+    <li class="breadcrumb-item">
+       <i class="flaticon2-reply mr-2"></i><a href="{% url 'productos:menu_productos' %}">Volver al menu</a> 
+    </li>
+</ul>
+{% endblock breadcrumb %} 
+
+{% block content %}
+
+
+<div class="card card-custom">
+    <div class="card-header">
+        <div class="card-title">
+            <span class="card-icon">
+                <i class="icon-2x text-dark flaticon-layers"></i>
+            </span>
+            <h3 class="card-label">Listado de productos
+            <small></small></h3>
+        </div>
+        <!-- <div class="card-toolbar">
+            <a  href="#" class="btn btn-success font-weight-bold mr-2" data-toggle="modal" data-target="#generarReporte">
+                <i class="flaticon2-download-2"></i>Generar Excel</a>
+        </div> -->
+    </div>
+    <div class="card-body">
+            <table id="tabla-productos" class="table table-separate table-head-custom table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Descripción</th>
+                        <th>Referencia</th>
+                        <th>Proveedor</th>
+                        <th>Costo Uni</th>
+                    </tr>
+                </thead>
+            </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+{% block javascripts %}
+<script src="{% static 'src/js/apps/utils/utils.js' %}?v=12"></script>
+<script src="{% static 'assets/plugins/custom/datatables/datatables.bundle.js' %}"></script>
+
+<script>
+    const csrftoken = "{{ csrf_token }}"
+    const urlTablaProductos = "{% url 'productos:data_productos' %}"
+
+
+    $(".select2").select2({
+        selectionCssClass: ":all:",
+        width: "100%",
+    });
+    
+</script> 
+<script src="{% static 'src/js/apps/productos/tabla_productos.js' %}?v=12"></script>
+<!-- <script src="{% static 'src/js/apps/almacen/jquery.binarytransport.js' %}"></script> -->
+{% endblock %}

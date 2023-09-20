@@ -1,0 +1,4 @@
+const formularioRegistrarInventario = [
+    'producto',
+    'cantidad',
+];

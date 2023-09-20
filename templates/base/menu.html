@@ -1,0 +1,81 @@
+{% extends "../base/base_general.html" %}
+{% load static %}
+
+{% comment %} contenido titulo {% endcomment %}
+{% block subheader_title %}{{ title }}{% endblock subheader_title %}
+
+{% comment %} contenido atajos {% endcomment %}
+{% block breadcrumb %}
+<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+    {% for item in breadcrumb_list %}
+        <li class="breadcrumb-item text-muted">
+            <a href="{% url item.url %}" class="text-muted">{{item.title}}</a>
+        </li>
+    {% endfor %}
+
+</ul>
+{% endblock breadcrumb %}
+
+{% comment %} contenido css {% endcomment %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/notification_badge.css' %}?v=1.0">
+{% endblock css %}
+
+{% comment %} Contenido menú {% endcomment %}
+{% block content %}
+<!--begin::Section-->
+<div class="align-items-start justify-content-center w-100">
+    <div class="row">
+    {% for option in options %}
+    {% if option.permission %}
+        {% if option.permission in perms %}
+            <div class="col-lg-4 mb-10 mb-lg-5">
+                <a {% if option.url_param %} href="{% url option.url option.url_param %}"  {% else %} href="{% url option.url %}" {% endif %} class="card p-5 wave wave-primary wave-animate-slow">
+                    <div class="d-flex justify-content-start align-items-center h-150px">
+                        <div class="col-3 d-flex justify-content-center">
+                            <i class="{{ option.icon }} text-{{ option.icon_color }}" style="font-size: 4rem !important;" ></i>
+                        </div>
+                        <div class="col-9">
+                            <div class="d-flex flex-column align-items-center gap-2">
+                                <span class="font-weight-bolder font-size-h6 text-dark text-start w-100">{{ option.title }}</span>
+                                <span class="fs-6 text-dark-50 text-start w-100">{{ option.description }}</span>
+                            </div>
+                        </div>
+                    </div>                    
+                </a>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="col-lg-4 mb-10 mb-lg-5">
+            <a {% if option.url_param %} href="{% url option.url option.url_param %}"  {% else %} href="{% url option.url %}" {% endif %} class="card p-5 wave wave-primary wave-animate-slow">
+                <div class="d-flex justify-content-start align-items-center h-150px">
+                    <div class="col-3 d-flex justify-content-center">
+                        <i class="{{ option.icon }} text-{{ option.icon_color }} fs-7x font-size-lg-h2"></i>
+                    </div>
+                    <div class="col-9">
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <span class="fw-bold fs-3 text-primary text-start w-100">{{ option.title }}</span>
+                            <span class="fs-6 text-primary text-start w-100">{{ option.description }}</span>
+                        </div>
+                    </div>
+                </div>                
+            </a>
+        </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+</div>
+<!--end::Section-->
+
+{% endblock content %}
+
+{% comment %} contenido javascript {% endcomment %}
+{% block javascript %}
+    <script>
+        $(document).ready(function() {
+            $(".wave").hover(function () {
+                $(this).toggleClass("wave-animate-fast");
+            });
+        });
+    </script>
+{% endblock javascript %}

@@ -1,0 +1,188 @@
+{% extends "../base/base_general.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block link %}
+    <link href="//www.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css" />
+{% endblock link %}
+{% block css %}
+<style>
+   
+</style>
+{% endblock css %}
+{% block subheader_title %}Registrar pedido{% endblock subheader_title %}
+
+{% block breadcrumb %}
+<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+    <li class="breadcrumb-item">
+       <i class="flaticon2-reply mr-2"></i><a href="{% url 'productos:menu_productos' %}">Volver al menu</a> 
+    </li>
+</ul>
+{% endblock breadcrumb %} 
+
+{% block content %}
+
+
+<div class="card card-custom">
+    <div class="card-header">
+     <h3 class="card-title">
+      Crear un pedido 
+     </h3>
+
+     <div class="card-toolbar">
+        <a href="#" class="btn btn-sm btn-success font-weight-bold">
+            Nuevo cliente <i class="icon text-light flaticon-avatar ml-2"></i>
+        </a>
+    </div>
+
+    </div>
+
+  
+
+    <!--begin::Form-->
+    <div class="card-body">
+
+        <form id="form-registrar-producto">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Cliente <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            {% render_field form.cliente class="form-control select2 w-10" id="cliente" %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Observaciones</label>
+                        {% render_field form.observaciones class="form-control" id="observaciones" %}
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+        <div class="separator border-primary my-7"></div>
+
+        <h3>Productos del pedido</h3>
+
+        <form id="formulario_visitantes"> {% csrf_token %}
+ 
+            
+                <!--begin::Repeater-->
+                <div id="kt_docs_repeater_basic">
+                <!--begin::Form group-->
+                <div class="form-group">
+                    <div data-repeater-list="visitantes" id="contenedor_visitantes">
+                        <div data-repeater-item>
+                            <div class="row item-repiter">
+    
+                            <div class="col-12 col-lg-3 mt-4">
+                                <!--begin::Input group-->
+                                <label for="producto" class="required form-label">Producto:</label>
+                                <select class="form-control select2-repeater" name="producto" onchange="validarCampoRepiter(this);">
+                                    {% for producto in productos %}
+                                        <option value="{{ producto.id }}">{{ producto.descripcion }} - {{ producto.referencia }}</option>
+                                    {% endfor %}
+                                </select>
+                        
+                                <!--begin::Input group-->
+                            </div>
+                            
+                            <div class="col-12 col-lg-3 mt-4">
+                                <!--begin::Input group-->
+                                <label for="cantidad" class="required form-label">Cantidad:</label>
+                                <input oninput="soloNumeros(this)" id="cantidad" type="text" class="form-control" name="cantidad" placeholder="Ej: 3" onchange="validarCampoRepiter(this);" />
+                                <!--begin::Input group-->
+                            </div>
+
+                            <div class="col-12 col-lg-3 mt-4">
+                                <!--begin::Input group-->
+                                <label for="valor" class="required form-label">Valor de venta:</label>
+                                <input oninput="soloNumeros(this)" id="valor" type="text" class="form-control" placeholder="Ej: 30000" name="nombres" onchange="validarCampoRepiter(this);" />
+                                <!--begin::Input group-->
+                            </div>
+                            
+    
+                            <div class="col-12 col-lg-1 mt-4 d-flex justify-content-center align-items-center">
+                                <button type="button" class="w-100 btn btn-danger mt-8 d-flex justify-content-center align-items-center" data-repeater-delete><i class="icon-2x text-light flaticon-delete"></i></button>
+                            </div>
+    
+                            </div> 
+                           
+                            </div>
+    
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-3 mt-4 p-0">
+                            <button type="button" class="w-100 btn btn-success" data-repeater-create>Agregar otro producto</button>
+                        </div>
+                    </div>
+                    
+            
+        </form>
+    
+        
+    </div>
+
+    <div class="card-footer d-flex justify-content-end">
+        <button type="reset" class="btn btn-secondary m-3">Cancelar</button>
+        <button type="button" class="btn btn-primary m-3" onclick="registrarProducto()" >Crear pedido</button>
+    </div>
+    
+
+
+{% endblock content %}
+
+{% block javascripts %}
+<script src="{% static 'src/js/apps/productos/forms.js' %}?v=12"></script>
+<script src="{% static 'src/js/apps/utils/utils.js' %}?v=12"></script>
+
+<script src="{% static 'assets/plugins/custom/datatables/datatables.bundle.js' %}"></script>
+
+<script>
+    
+    validarOnChangeMasivo(formularioRegistrarProducto)
+
+    const csrftoken = "{{ csrf_token }}"
+    const registrarProductoUrl = "{% url 'productos:registrar_producto' %}"
+
+
+    $(document).ready(function() {
+        $(".select2").select2({
+            selectionCssClass: ":all:",
+            width: "100%",
+        });
+    });
+
+    
+
+    $('#kt_docs_repeater_basic').repeater({
+        initEmpty: true,
+      
+        defaultValues: {
+            'text-input': 'foo'
+        },
+      
+        show: function () {
+            $(this).slideDown();
+
+            $(".select2-repeater").select2({
+                selectionCssClass: ":all:",
+                width: "100%",
+            });
+        },
+      
+        hide: function (deleteElement) {
+            $(this).slideUp(deleteElement);
+        }
+
+        
+      });
+    
+</script> 
+
+<script src="{% static 'src/js/apps/productos/registrar_producto.js' %}?v=12"></script>
+
+{% endblock %}

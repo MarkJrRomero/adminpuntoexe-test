@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+	<!--begin::Head-->
+	<head><base href="../../../../">
+		<meta charset="utf-8" />
+		<title>Inicio de Sesión | Punto exe</title>
+		<meta name="description" content="Login page example" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<link rel="canonical" href="https://keenthemes.com/metronic" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+    	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/pages/login/classic/login-1.css' %}?v=1.0">
+    	<link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/global/plugins.bundle.css' %}?v=1.0">
+    	<link rel="stylesheet" type="text/css" href="{% static 'assets/plugins/custom/prismjs/prismjs.bundle.css' %}?v=1.0">
+    	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.bundle.css' %}?v=1.0">
+    	<link rel="stylesheet" type="text/css" href="{% static 'assets/media/logos/favicon.ico' %}?v=1.0">
+			<link rel="stylesheet" type="text/css" href="{% static 'src/css/apps/base/login.css' %}?v=1.0">
+		</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="header-fixed header-mobile-fixed header-bottom-enabled subheader-enabled page-loading">
+		<!--begin::Main-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Login-->
+			<div class="login login-1 login-signin-on d-flex flex-column flex-lg-row flex-column-fluid bg-white" id="kt_login">
+				<!--begin::Aside-->
+				<div class="login-aside d-flex flex-column flex-row-auto d-flex justify-content-center align-items-center">
+					<!--begin::Aside Top-->
+					<div class="d-flex justify-content-center align-items-center">
+						<!--begin::Aside header-->
+						<a href="#" class="text-center">
+							<img src="{% static 'src/media/svg/logos/logo_exe.png' %}" id="tecno" class="max-h-500px" alt="" />
+						</a>
+						<!--end::Aside header-->
+						<!--begin::Aside title-->
+						{% comment %} <h3 class="font-weight-bolder text-center font-size-h4 font-size-h1-lg" style="color: #FFFFFF;">Punto exe {% endcomment %}
+						<!--end::Aside title-->
+					</div>
+					<!--end::Aside Top-->
+					<!--begin::Aside Bottom-->
+                  
+					<!--end::Aside Bottom-->
+				</div>
+				<!--begin::Aside-->
+				<!--begin::Content-->
+				<div class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
+					<!--begin::Content body-->
+					<div class="d-flex flex-column-fluid flex-center">
+						<!--begin::Signin-->
+						<div class="login-form login-signin">
+							<!--begin::Form-->
+							<form class="form" novalidate="novalidate" id="kt_login_signin_form" action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+								{% for error in form.non_field_errors %}
+									<div class="alert alert-danger">{{error}}</div>
+								{% endfor %}
+								{% if messages %}
+								{% for message in messages %}
+									<div class="alert alert-{{ message.tags }} alert-styled-left alert-dismissible">
+										<span class="font-weight-semibold"></span>{{ message }} <a href="#" class="alert-link"></a>.
+									</div>
+								{% endfor %}
+								{% endif %}
+								<!--begin::Title-->
+								<div class="pb-13 pt-lg-0 pt-5">
+											<span class="font-weight-bolder text-dark font-size-h1">Admin .exe</span>
+								</div>
+								<!--begin::Title-->
+								<!--begin::Form group-->
+								<div class="form-group">
+									<label class="font-size-h6 font-weight-bolder text-dark">Usuario</label>
+									<input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg" type="text" name="{{ form.username.name }}" autocomplete="off" />
+								</div>
+								<!--end::Form group-->
+								<!--begin::Form group-->
+								<div class="form-group">
+									<div class="d-flex justify-content-between mt-n5">
+										<label class="font-size-h6 font-weight-bolder text-dark pt-5">Contraseña</label>
+										{% comment %} <a href="javascript:;" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5" id="kt_login_forgot">Forgot Password ?</a> {% endcomment %}
+									</div>
+									<input class="form-control form-control-solid h-auto py-6 px-6 rounded-lg" type="password" name="{{ form.password.name }}" autocomplete="off" />
+								</div>
+								<!--end::Form group-->
+								<!--begin::Action-->
+                                <button type="button" id="kt_login_signin_submit" class="btn btn-dark font-weight-bolder font-size-h6 px-8 py-4 my-3 mr-3">Iniciar Sesión</button>
+								<!--end::Action-->
+							</form>
+						
+							<!--end::Form-->
+						</div>
+						<!--end::Signin-->
+						<!--begin::Signup-->
+			
+						<!--end::Signup-->
+						<!--begin::Forgot-->
+			
+						<!--end::Forgot-->
+					</div>
+					<!--end::Content body-->
+					<!--begin::Content footer-->
+					
+					<!--end::Content footer-->
+				</div>
+				<!--end::Content-->
+			</div>
+			<!--end::Login-->
+		</div>
+		<!--end::Main-->
+		{% comment %} <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script> {% endcomment %}
+		<!--begin::Global Config(global config for global JS scripts)-->
+		<script>var KTAppSettings = { "breakpoints": { "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1200 }, "colors": { "theme": { "base": { "white": "#ffffff", "primary": "#6993FF", "secondary": "#E5EAEE", "success": "#1BC5BD", "info": "#8950FC", "warning": "#FFA800", "danger": "#F64E60", "light": "#F3F6F9", "dark": "#212121" }, "light": { "white": "#ffffff", "primary": "#E1E9FF", "secondary": "#ECF0F3", "success": "#C9F7F5", "info": "#EEE5FF", "warning": "#FFF4DE", "danger": "#FFE2E5", "light": "#F3F6F9", "dark": "#D6D6E0" }, "inverse": { "white": "#ffffff", "primary": "#ffffff", "secondary": "#212121", "success": "#ffffff", "info": "#ffffff", "warning": "#ffffff", "danger": "#ffffff", "light": "#464E5F", "dark": "#ffffff" } }, "gray": { "gray-100": "#F3F6F9", "gray-200": "#ECF0F3", "gray-300": "#E5EAEE", "gray-400": "#D6D6E0", "gray-500": "#B5B5C3", "gray-600": "#80808F", "gray-700": "#464E5F", "gray-800": "#1B283F", "gray-900": "#212121" } }, "font-family": "Poppins" };</script>
+		<!--end::Global Config-->
+		<!--begin::Global Theme Bundle(used by all pages)-->
+        <script src="{% static 'assets/plugins/global/jquery-3.6.3.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/global/plugins.bundle.js' %}"></script>
+        <script src="{% static 'assets/plugins/custom/prismjs/prismjs.bundle.js' %}"></script>
+        <script src="{% static 'assets/js/scripts.bundle.js' %}"></script>
+		<!--end::Global Theme Bundle-->
+		<!--begin::Page Scripts(used by this page)-->
+        <script src="{% static 'src/js/pages/custom/login/login-general.js' %}"></script>
+        
+		<!--end::Page Scripts-->
+	</body>
+	<!--end::Body-->
+</html>

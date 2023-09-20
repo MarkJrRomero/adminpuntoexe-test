@@ -1,0 +1,115 @@
+{% extends "../base/base_general.html" %}
+{% load static %}
+{% block css %}
+    #ww_21b681428e682 .ww_col2{
+        opacity: 0.4!important;
+
+    }
+{% endblock css %}
+{% block content %}
+
+<!--begin::Subheader-->
+<div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+        <!--begin::Info-->
+        <div class="d-flex align-items-center flex-wrap mr-1">
+            <!--begin::Page Heading-->
+            <div class="d-flex align-items-baseline flex-wrap mr-5">
+                <!--begin::Page Title-->
+                <h5 class="text-dark font-weight-bold my-1 mr-5">Bienvenid@!</h5>
+                <!--end::Page Title-->
+                <!--begin::Breadcrumb-->
+                <!--end::Breadcrumb-->
+            </div>
+            <!--end::Page Heading-->
+        </div>
+        <!--end::Info-->
+    </div>
+</div>
+<!--end::Subheader-->
+
+<!--begin::Card-->
+<div class="card card-custom gutter-b">
+    <div class="card-body">
+        <!--begin::Top-->
+        <div class="d-flex">
+            <!--begin::Pic-->
+            <div class="flex-shrink-0 mr-7">
+                <div class="symbol symbol-50 symbol-lg-120 symbol-light-primary">
+                    <span class="font-size-h3 symbol-label font-weight-boldest">
+                        {% if info_user.first_name %}
+                            {{ info_user.first_name|slice:":2" }}
+
+                        {% else %}
+                            None
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            <!--end::Pic-->
+            <!--begin: Info-->
+            <div class="flex-grow-1">
+                <!--begin::Title-->
+                <div class="d-flex align-items-center justify-content-between flex-wrap mt-2">
+                    <!--begin::User-->
+                    <div class="mr-3">
+                        <!--begin::Name-->
+                        <a href="#" class="d-flex align-items-center text-dark text-hover-primary font-size-h5 font-weight-bold mr-3">{{ info_user.first_name }}
+                        <i class="flaticon2-correct text-success icon-md ml-2"></i></a>
+                        <!--end::Name-->
+                        <!--begin::Contacts-->
+                        <div class="d-flex flex-wrap my-2">
+                            <a href="#" class="text-dark-50 text-hover-primary font-weight-bold mr-lg-8 mr-5 mb-lg-0 mb-2"> <i class="flaticon2-new-email mr-2 font-size-lg"></i>{{ info_user.email }}</a>
+                        </div>
+                        <!--end::Contacts-->
+                    </div>
+                    <!--begin::User-->
+                    <!--begin::Actions-->
+                  
+                    <!--end::Actions-->
+                </div>
+                <!--end::Title-->
+                <!--begin::Content-->
+                <div class="d-flex align-items-center flex-wrap justify-content-between">
+                    <!--begin::Description-->
+                   
+                    <!--end::Description-->
+                    <!--begin::Progress-->
+                    <div class="d-flex mt-4 mt-sm-0">
+                    </div>
+                    <!--end::Progress-->
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--end::Info-->
+        </div>
+        <!--end::Top-->
+        <!--begin::Separator-->
+        <div class="separator separator-solid my-7"></div>
+        <!--end::Separator-->
+        <!--begin::Bottom-->
+        <div class="d-flex align-items-center flex-wrap">
+            <!--begin: Item-->
+            <div
+                id="ww_21b681428e682"
+                v="1.3"
+                loc="id"
+                a='{"t":"responsive","lang":"es","sl_lpl":1,"ids":["wl3950"],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"#FFFFFF00","cl_font":"#000000","cl_cloud":"#d4d4d4","cl_persp":"#2196F3","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","cl_odd":"#00000000"}'
+            >
+                Weather Data Source: <a href="https://tiempolargo.com/barranquilla_tiempo_25_dias/" id="ww_21b681428e682_u" target="_blank">Clima en Barranquilla a 25 días</a>
+            </div>
+
+
+            <!--end: Item-->
+
+            
+        </div>
+        <!--end::Bottom-->
+    </div>
+</div>
+
+<!--end::Card-->
+{% endblock %}
+{% block javascripts %}
+<script async src="https://app1.weatherwidget.org/js/?id=ww_21b681428e682"></script>
+{% endblock %}
